@@ -3,6 +3,7 @@
 <head>
 <title>Учет электроэнергии. Промышленный отдел</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
 <link rel="stylesheet" href="<?php  echo base_url();?>css/1.css" type="text/css" media="screen,projection" />
 <script type="text/javascript" src="<?php  echo base_url();?>addclasskillclass.js"></script>
 	<script type="text/javascript" src="<?php  echo base_url();?>attachevent.js"></script>
