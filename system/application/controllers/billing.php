@@ -498,12 +498,15 @@ class Billing extends Controller
 		$this->db->insert("industry.billing_point",$_POST);
 		redirect("billing/firm/".$_POST['firm_id']);
 	}
+
 	function close_billing_point()
 	{
+        $this->check_billing_point($this->uri->segment(3));
 		$sql="update industry.billing_point set deleted_point=true where id=".$this->uri->segment(3);
 		$this->db->query($sql);
 		redirect("billing/firm/".$this->uri->segment(4));
 	}
+
 	function tp_billing_point()
 	{
 		$sql="update industry.billing_point set in_tp= not in_tp where id=".$this->uri->segment(3);
@@ -903,6 +906,33 @@ class Billing extends Controller
 		$this->load->view("pre_schetfactura2",$data);
 		$this->load->view("right");
 	}
+
+    private function check_billing_point($bill_id)
+    {
+        $bill_id = $this->uri->segment(3);
+        $period_id = $this->get_cpi($bill_id);
+        $this->db->where("bill_id",$bill_id);
+        $this->db->where("period_id",$period_id);
+        $n = $this->db->get("industry.nadbavka_info");
+        if($n->num_rows > 0){
+            die("V dannyi period na tochke ucheta nahodyatsya nadbavki!");
+        }
+        $this->db->where("bill_id",$bill_id);
+        $this->db->where("period_id",$period_id);
+        $sbp = $this->db->get("industry.sovm_billing_point");
+        if($sbp->num_rows > 0){
+            die("Na tochke ucheta imeutsya sovmesntye uchety!");
+        }
+        $this->db->where("bill_id",$bill_id);
+        $unfc = $this->db->get("industry.unfinished_counter");
+        if($unfc->num_rows > 0){
+            die("Na tochke ucheta imeutsya nesnyatye schetchiki!");
+        }
+    }
+
+    private function get_cpi(){
+        return $this->db->query("select * from industry.current_period_id()")->row()->current_period_id;
+    }
 
     function isRussian($text)
     {
@@ -1592,6 +1622,7 @@ class Billing extends Controller
 	}
 	function delete_billing_point()
 	{
+        $this->check_billing_point($this->uri->segment(3));
 		$sql="select firm_id from industry.billing_point where id=".$this->uri->segment(3);
 		$firm_id=$this->db->query($sql)->row()->firm_id;
 		$sql="select count(*) as count from industry.counter where point_id=".$this->uri->segment(3);
