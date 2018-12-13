@@ -3790,7 +3790,40 @@ where firm_id={$this->uri->segment(3)} and data_finish is null";
         $this->db->where("id", $tariff_id);
         $this->db->delete("industry.tariff");
         redirect("billing/tariff_list");
-    }	
+    }
+
+    public function unordered_oplata()
+    {
+        $this->db->where("period_id", $this->get_cpi());
+        $data['uo'] = $this->db->get("industry.unordered_oplata")->result();
+        $this->left();
+        $this->load->view("unordered_oplata/index", $data);
+        $this->load->view("right");
+    }
+
+    public function order_oplata()
+    {
+        $nomer1c = $this->uri->segment(3);
+        $this->db->where("nomer1c", $nomer1c);
+        $this->db->where("period_id", $this->get_cpi());
+        $data['uo'] = $this->db->get("industry.unordered_oplata_full")->result();
+        $dogs = array();
+        foreach ($data['uo'] as $item) {
+            $dogs[$item->dogovor] = $item->firm_id;
+        }
+        $data['dogs'] = $dogs;
+        $data['nomer1c'] = $nomer1c;
+        $this->left();
+        $this->load->view("unordered_oplata/order", $data);
+        $this->load->view("right");
+    }
+
+    public function change_oplata_ordering()
+    {
+        $this->db->where("id", $_POST['oplata_id']);
+        $this->db->update("industry.oplata", array('firm_id' => $_POST['firm_id']));
+        redirect("billing/order_oplata/{$_POST['nomer1c']}");
+    }
 	
 }
 

@@ -44,3 +44,4 @@ echo anchor("billing/pre_ip_obshiy","Частники, расчитывающи�
 <li>
 	<a href="<?php echo site_url('billing/pre_dup7re'); ?>"><?php echo 'Оборотная ведомость 7-РЭ (дог)'; ?></a>
 </li>
+<li><a href="<?php echo site_url('billing/unordered_oplata'); ?>"><?php echo 'Перекидывание оплат (освещение)'; ?></a></li>
