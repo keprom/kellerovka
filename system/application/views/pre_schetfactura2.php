@@ -10,6 +10,7 @@ echo "<input type=hidden name=period_id value=".$period_id." >";
 ?>
 Другая дата выдачи: <input name=data_schet value='<?php echo $r->data_schet; ?>' > <br><br>
 Другой номер счетфактуры: <input name=schet2 value='<?php echo $r->schet2; ?>' > <br><br>
+Последний номер счета-фактуры <input type="text" disabled value="<?php echo $max_schet_number; ?>"><br><br>
 Дата выдачи накладной(пустой если последний день месяца): <input name=data_nakl value='<?php echo $r->data_schet; ?>' > <br><br>
 Номер накладной: <input name=schet_nakl value='<?php echo $firm->schet_nakl; ?>' > <br><br>
 Условия оплаты по договору: <input name=edit1 value='<?php echo $firm->edit1; ?>' > <br><br>
