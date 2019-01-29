@@ -885,7 +885,7 @@ class Billing extends Controller
 	function pre_schetfactura()
 	{
 		$this->db->where('id',$this->uri->segment(3));
-		$data['r']= $this->	db->get('industry.firm');
+		$data['r']= $this->	db->pre_graphget('industry.firm');
 		$sql = "SELECT period.*,case when sprav.value is not null then 'selected' else '' end  as checked FROM industry.period left join industry.sprav on period.id=sprav.value::integer and sprav.name='current_period' order by id";
 		$data['period']=$this->db->query($sql);
 		$this->left();
