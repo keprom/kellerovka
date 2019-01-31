@@ -76,7 +76,7 @@ $last_group=-1;
 										<tr>
 											<td align=center>
 												<?php if ($data->dogovor==1) {$sum1=$data->nachisleno;$kvt1=$data->itogo_kvt;}?>
-													<?php if ($data->dogovor==1) continue;?>
+<!--													--><?php //if ($data->dogovor==1) continue;?>
 														<?php if ($data->dogovor==2) {$data->nachisleno=$sum1+$data->nachisleno;$data->itogo_kvt=$kvt1+$data->itogo_kvt;}?>
 															<?php if ($data->dogovor==4) {$sum2=$data->nachisleno;$kvt2=$data->itogo_kvt;}?>
 																<?php #if ($data->dogovor==4) continue;?>
