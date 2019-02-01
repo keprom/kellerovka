@@ -46,3 +46,4 @@ echo anchor("billing/pre_ip_obshiy","Частники, расчитывающи�
 </li>
 <li><a href="<?php echo site_url('billing/unordered_oplata'); ?>"><?php echo 'Перекидывание оплат (освещение)'; ?></a></li>
 <li><a href="<?php echo site_url('billing/kontragent_rek'); ?>"><?php echo 'Список контрагентов с реквизитами'; ?></a></li>
+<li><a href="<?php echo site_url('billing/sf_verification'); ?>"><?php echo 'Номера счетов-фактур с начислениями'; ?></a></li>
