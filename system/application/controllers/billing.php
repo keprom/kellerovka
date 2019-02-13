@@ -3976,7 +3976,7 @@ where firm_id={$this->uri->segment(3)} and data_finish is null";
     public function migration()
     {
         $data['report'] = $this->db->get("shell.migration")->result();
-        $this->export_to_excel("other_reports/migration", $data,"ленинградский_пэу");
+        $this->export_to_excel("other_reports/migration", $data,"келлеровский_пэу");
 //        $this->load->view("other_reports/migration", $data);
     }
 
